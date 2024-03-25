@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 
 class ResultsFragment : Fragment() {
 
+    // different way of initializing viewmodel that will allow me to access same instance of it between fragments
     private lateinit var countsViewModel: CountsViewModel
 
     private lateinit var buttonReset: Button
@@ -46,11 +47,13 @@ class ResultsFragment : Fragment() {
         }
 
         buttonContinue.setOnClickListener {
+            // when the button is pressed close the fragment
             requireActivity().supportFragmentManager.popBackStack()
         }
         return view
     }
     fun updateBoth() {
+        // updates the text visible on the screen
         countLeft.text = getString(R.string.left_count, countsViewModel.getLeftCount())
         countRight.text = getString(R.string.right_count, countsViewModel.getRightCount())
     }
